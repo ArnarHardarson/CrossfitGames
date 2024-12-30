@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 import re
 import logging
-from crossfitgames.utils.transformation_functions import convert_object_columns_to_numeric, lb_to_kg, inch_to_cm
+from crossfitgames.utils.transformation_functions import convert_object_columns_to_numeric, lb_to_kg, inch_to_cm, assign_last_place
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -137,13 +137,9 @@ def games_info_competitors(year=2018, division=1):
             continue
 
     # # Some transformations
-    # clean lbs from weight
-    df_games_info_competitors['weight'] = df_games_info_competitors['weight'].apply(lambda x: re.findall(r'\d+', x))
-    # clean the "T" from workoutRank, this is when athletes are tied in a workout
-    df_games_info_competitors['overallRank'] = df_games_info_competitors['overallRank'].apply(lambda x: re.findall(r'\d+', x))
+    # if a competitor withdraws from competition he is assigned a last place
+    df_games_info_competitors['overallRank'] = assign_last_place(df_games_info_competitors, 'overallRank')
     # change overallRank and overallScore to a numeric value so we can to some calculations
-    df_games_info_competitors['overallRank'] = df_games_info_competitors['overallRank'].astype('int')
-    df_games_info_competitors['age'] = df_games_info_competitors['age'].astype('int')
     # create a new columns and convert height to cm and weight to kg
     df_games_info_competitors = convert_object_columns_to_numeric(df_games_info_competitors)
     df_games_info_competitors['heightInCm'] = df_games_info_competitors['height'].apply(inch_to_cm)

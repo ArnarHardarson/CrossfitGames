@@ -12,7 +12,7 @@ You need to join games_info_competitors to games_info_scores if you want to get 
 ## Improvements on the roadmap
 
 ### Fixing some data quality issues needed for analysis
-### Unit testing and data quality testing
+### Unit testing on transformation functions and data quality testing in general
 ### Add all competitions, i.e. regionals, sanctionals, the open etc.
 ### Include a function that writes the data to a storage account.
 

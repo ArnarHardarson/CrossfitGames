@@ -51,3 +51,30 @@ def lb_to_kg(weight):
         return float(weight.replace('kg', '').strip())
     else:
         return None
+    
+import pandas as pd
+
+def assign_last_place(df, column_name):
+    """
+    Replace withdrawal marker ('--') in the specified column with last place rank.
+
+    Args:
+        df (pd.DataFrame): The DataFrame containing the ranking data.
+        column_name (str): The name of the column with ranking data.
+
+    Returns:
+        pd.DataFrame: The updated DataFrame with '--' replaced by last place rank.
+    """
+    # Replace '--' with NaN
+    df[column_name] = df[column_name].replace('--', None)
+    
+    # Convert to numeric, coercing errors
+    df[column_name] = pd.to_numeric(df[column_name], errors='coerce')
+    
+    # Determine the last place rank
+    last_place = df[column_name].max() + 1
+    
+    # Replace NaN (former '--') with last place
+    df[column_name] = df[column_name].fillna(last_place).astype(int)
+    
+    return df[column_name]
