@@ -1,49 +1,84 @@
 # CrossfitGames
 
-This repo is a collection of functions that allow you to collect data from the Crossfit Games leaderboard open API.
+## Description
 
-You can use this repo to access structured data from the Crossfit Games open API to do analysis on.
+This repository contains a collection of functions that allow you to collect data from the Crossfit Games leaderboard open API. You can use this repository to access structured data from the Crossfit Games open API for analysis.
 
+## Getting Started
 
-## Using the data
-You need to join games_info_competitors to games_info_scores if you want to get the names of the competitors.
+### Prerequisites
 
+- Python 3.9 or higher
+- pip
 
-## Improvements on the roadmap
+Before starting work on this project, ensure you:
 
-### Fixing some data quality issues needed for analysis
-### Unit testing on transformation functions and data quality testing in general
-### Add all competitions, i.e. regionals, sanctionals, the open etc.
-### Include a function that writes the data to a storage account.
+1. Create a virtual environment
 
-## Getting started
+   ```bash
+   python3 -m venv crossfitgames-env
+   ```
+2. Activate the virtual environment.
 
-Before starting on work with this project, please make sure 
+   ```bash
+   source crossfitgames-env/bin/activate
+    ```  
+3. Install dependencies:
 
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+### Installing the Project
+
+To use the functions in the `src` directory, you must install the project as a Python package. This allows you to import the functions into your scripts or notebooks.
+
+1. From the project's root directory, run the following command to install the package in editable mode:
+
+   ```bash
+   pip install -e .
+   ```
+
+2. Once installed, you can import the package in your Python scripts or notebooks as shown below:
+
+   ```python
+   from crossfitgames.api.api_calls import games_info_competitors
+
+   # Example usage
+   data = games_info_competitors(2024, 2)
+   print(data)
+   ```
+
+This ensures that the `src` directory is properly recognized as a module and can be imported into any environment where the package is installed.
+
+### Data Model
+
+To include competitor names in your analysis, you need to join the following data:
+
+- `games_info_competitors` or `games_info_competitors_multiple`
+- `games_info_scores` or `games_info_scores_multiple`
+
+## Improvements on the Roadmap
+
+- Fixing data quality issues.
+- Adding unit testing for transformation functions and improving overall data quality testing.
+- Expanding functionality to include all competitions (e.g., regionals, sanctionals, the Open).
+- Adding a function to write the data to a storage account.
+
+## Project Structure
+
+```
 ├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
-│   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_csv.py
-│   │
-│
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+├── README.md          
+├── data               <- Directory where api_call.py writes the data.
+├── notebooks          <- Jupyter notebooks for demonstrating api_calls usage and exploratory data analysis (EDA).
+├── requirements.txt   <- Dependencies for reproducing the analysis environment.
+├── setup.py           <- Makes the project pip-installable (pip install -e .) so `src` can be imported.
+├── src                <- Source code for this project.
+│   ├── __init__.py    <- Makes `src` a Python module.
+│   ├── crossfitgames  <- Scripts for downloading or generating data.
+│   │   ├── utils      <- Transformation functions and demo scripts for reading and writing data.
+│   │   ├── api        <- Main scripts for API calls and writing data.
+```
 
-Project base on the https://github.com/drivendata/cookiecutter-data-science template
+---
