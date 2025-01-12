@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: crossfitgames      # Name of your database or schema
+    database: crossfitgames
+    schema: bronze_layer             # Schema where the source tables are located
+    tables:
+      - name: scores
+      - name: competitors    # Name of the table
+        description: "Table containing competitor information from the CrossFit Games"

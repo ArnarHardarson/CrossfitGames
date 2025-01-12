@@ -1,0 +1,8 @@
+crossfitgames_dbt:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: ../data/crossfitgames.db
+      catalog: crossfitgames
+      threads: 2

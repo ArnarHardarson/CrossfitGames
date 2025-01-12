@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: competitors
+    description: "A simple transformed view of the raw data."
+  - name: scores
