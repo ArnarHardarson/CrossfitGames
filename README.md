@@ -71,8 +71,9 @@ To include competitor names in your analysis, you need to join the following dat
 
 ```
 ├── LICENSE
-├── README.md          
-├── data               <- Directory where api_call.py writes the data.
+├── README.md
+├── crossfitgames_dbt  <- dbt models and config          
+├── data               <- Directory where api_call.py writes the data and functions to write the data files to a duckdb database.
 ├── notebooks          <- Jupyter notebooks for demonstrating api_calls usage and exploratory data analysis (EDA).
 ├── requirements.txt   <- Dependencies for reproducing the analysis environment.
 ├── setup.py           <- Makes the project pip-installable (pip install -e .) so `src` can be imported.
