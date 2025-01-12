@@ -4,6 +4,8 @@
 
 This repository contains a collection of functions that allow you to collect data from the Crossfit Games leaderboard open API. You can use this repository to access structured data from the Crossfit Games open API for analysis.
 
+It also shows how to use duckdb and dbt to write the files to a database and using dbt to transform the data to usable data models.
+
 ## Getting Started
 
 ### Prerequisites
@@ -63,7 +65,7 @@ To include competitor names in your analysis, you need to join the following dat
 - Fixing data quality issues.
 - Adding unit testing for transformation functions and improving overall data quality testing.
 - Expanding functionality to include all competitions (e.g., regionals, sanctionals, the Open).
-- Adding a function to write the data to a storage account.
+- Finishing the dbt models
 
 ## Project Structure
 
